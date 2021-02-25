@@ -1,5 +1,7 @@
 # CTFd_with_CTFd-whale
 
+[ZH-README](https://github.com/Err0rCM/CTFd_with_CTFd-whale/blob/main/ZH-README.md)
+
 This repository is forked from [CTFD3.2.1](https://github.com/CTFd/CTFd).I add something from [CTFD-whale@frankli0324](https://github.com/frankli0324/CTFd-Whale).It was origined from [glzjin](https://github.com/glzjin/CTFd-Whale)
 
 Ctfd version 3.2.1 and FRP version 0.29.0 are used in this repository.
