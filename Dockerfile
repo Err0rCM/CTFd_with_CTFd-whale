@@ -1,16 +1,16 @@
-FROM python:3.7-slim-buster
+FROM python:3.7-slim-bullseye
 WORKDIR /opt/CTFd
 RUN mkdir -p /opt/CTFd /var/log/CTFd /var/uploads
 
 # hadolint ignore=DL3008
-RUN echo 'deb http://mirrors.aliyun.com/debian/ buster main non-free contrib \
- deb http://mirrors.aliyun.com/debian/ buster-updates main non-free contrib \
- deb http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib \
- deb-src http://mirrors.aliyun.com/debian/ buster main non-free contrib \
- deb-src http://mirrors.aliyun.com/debian/ buster-updates main non-free contrib \
- deb-src http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib \
- deb http://mirrors.aliyun.com/debian-security/ buster/updates main non-free contrib \
- deb-src http://mirrors.aliyun.com/debian-security/ buster/updates main non-free contrib'> /etc/apt/sources.list && \
+RUN echo 'deb http://mirrors.aliyun.com/debian/ bullseye main non-free contrib \
+ deb http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib \
+ deb http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib \
+ deb-src http://mirrors.aliyun.com/debian/ bullseye main non-free contrib \
+ deb-src http://mirrors.aliyun.com/debian/ bullseye-updates main non-free contrib \
+ deb-src http://mirrors.aliyun.com/debian/ bullseye-backports main non-free contrib \
+ deb http://mirrors.aliyun.com/debian-security/ bullseye/updates main non-free contrib \
+ deb-src http://mirrors.aliyun.com/debian-security/ bullseye/updates main non-free contrib'> /etc/apt/sources.list && \
     apt-get update \
     && apt-get install -y --no-install-recommends \
         build-essential \

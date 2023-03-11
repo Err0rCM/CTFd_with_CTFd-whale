@@ -28,7 +28,6 @@ services:
         internal:
         frp:
             ipv4_address: 172.1.0.2
-    cpus: '1.00'
     mem_limit: 450M
 
   nginx:
@@ -37,13 +36,12 @@ services:
     volumes:
       - ./conf/nginx/http.conf:/etc/nginx/nginx.conf
     ports:
-      - 80:80
+      - 82:80
     depends_on:
       - ctfd
     networks:
         default:
         internal:
-    cpus: '1.00'
     mem_limit: 450M
 
   db:
@@ -60,7 +58,6 @@ services:
         internal:
     # This command is required to set important mariadb defaults
     command: [mysqld, --character-set-server=utf8mb4, --collation-server=utf8mb4_unicode_ci, --wait_timeout=28800, --log-warnings=0]
-    cpus: '1.00'
     mem_limit: 450M
 
   cache:
@@ -70,7 +67,6 @@ services:
     - .data/redis:/data
     networks:
         internal:
-    cpus: '1.00'
     mem_limit: 450M
   
   frps:
@@ -83,9 +79,11 @@ services:
         - -c
         - /conf/frps.ini
     ports:
-      - "28000-28100:28000-28100"
+      - "10000-10100:10000-10100"
       - "6490:6490"
     networks:
+        frp:
+          ipv4_address: 172.1.0.4
         default:
 
   frpc:    
@@ -101,7 +99,6 @@ services:
         frp:
             ipv4_address: 172.1.0.3
         frp-containers:
-    cpus: '1.00'
     mem_limit: 250M
 
 networks:
@@ -109,13 +106,15 @@ networks:
     internal:
         internal: true
     frp:
+        attachable: true
         driver: bridge
         ipam:
             config:
                 - subnet: 172.1.0.0/16
     frp-containers:
         driver: overlay
-        internal: true
+        internal: false
+        attachable: true
         ipam:
             config:
                 - subnet: 172.2.0.0/16
